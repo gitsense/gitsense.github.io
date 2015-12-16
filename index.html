@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <title>GitSense</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link href="/css/gitsense.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/octicons/octicons.css">
+        <script type="text/javascript" src="/js/jquery-1.7.2/jquery.js"></script>
+        <script type="text/javascript" src="/js/gitsense.js"></script>
+        <script type="text/javascript">
+            gitsense.init();
+        </script>
+    </head>
+    <body>
+    <center>
+        <div style="border-bottom:1px solid #ccc">
+            <div style="width:940;padding-top:15px;text-align:left;height:50px;">
+                <div style="float:left">
+                    <a href=/><img src=/images/beta-logo.png></a>
+                </div>
+                <div style="float:right">
+                </div>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        <div style="border-bottom:1px solid #ccc;">
+            <div style="width:980px;padding-top:50px;padding-bottom:40px;">
+                <h1>Search for commits and more, all from within GitHub</h1>
+                <div style="width:940px;height:500px;overflow:hidden;margin-top:30px;" 
+                    class="screen-shots shadow">
+                    <div id=how-it-works-body-on style=""> 
+                        <img src=/images/gitsense-off.png
+                            data-caption="
+                                GitSense is a free Chrome Extension for GitHub, and it's reimagining how you can use GitHub's commits and branches page.
+                            "
+                        >
+                        <img src=/images/gitsense-on-1.png
+                            data-caption="
+                                With just a glance, you'll now be able to tell how old and active
+                                a repository is.
+                            "
+                        >
+                        <img src=/images/gitsense-on-7.png
+                            data-caption="
+                            Quickly gauge required code review effort, with GitSense code churn metrics.
+                            "
+                        >
+                        <img src=/images/gitsense-on-2.png
+                            data-caption="
+                                Find forgotten and renamed files with the GitSense
+                                <span style='color:gold'>Changes</span> tree,
+                                which contains every change from every commit.
+                            "
+                        >
+                        <img src=/images/gitsense-on-3.png
+                            data-caption="
+                                Search for commits by files, dates, and more.&nbsp; 
+                                And use the timeline chart above, to see when they were committed.
+                            "
+                        >
+                        <img src=/images/gitsense-on-4.png
+                            data-caption="
+                                Quickly verify what is and isn't on a branch, by executing a commits search 
+                                across multiple branches at once.
+                            "
+                        >
+                        <img src=/images/gitsense-on-6.png
+                            data-caption="
+                                Execute a <span style='color:gold'>diffs</span> search, to quickly answer the question of who did what and when.
+                            "
+                        >
+                        <img src=/images/gitsense-on-5.png
+                            data-caption="
+                                Need a bird's eye view into your branches?&nbsp; No problem.&nbsp; Just click the plus button beside the branches you want to analyze.
+                            "
+                        >
+                        <div id=how-it-works-caption class="caption-container" style="display:none;">
+                            <table class="caption">
+                                <tr>
+                                    <td id=how-it-works-caption-nav-prev class="caption-arrow">
+                                        <span class="octicon octicon-arrow-left" 
+                                            style="font-size: 18px;"></span>
+                                    </td>
+                                    <td id=how-it-works-caption-text class="caption-text">
+                                    </td>
+                                    <td id=how-it-works-caption-nav-next class="caption-arrow">
+                                        <span class="octicon octicon-arrow-right"
+                                            style="font-size:18px;"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div style="clear:both"></div>
+                </div>
+                <table style="margin-top:40px;">
+                    <tr>
+                        <td style="padding-right:0px;">
+                            <a href=https://chrome.google.com/webstore/detail/gitsense/fgnjcebdincofoebkahonlphjoiinglo><img src=/images/ChromeWebStore_Badge_v2_206x58.png></a>
+                        </td>
+                        <td style="padding-right:17px;padding-left:7px;">
+                            <span style="font-weight:bold;font-size:18px">&</span>
+                        </td>
+                        <td style="vertical-align:middle;padding-top:5px;">
+                            <a href=https://github.com/gitsense/gitsense style="color:black;">
+                                <span class="octicon octicon-logo-github" style="font-size:47px;"></span></a>
+                        </td>
+                    <tr>
+                </table>
+                </div>
+            </div>
+        </div>
+        <div style="padding-top:20px;padding-bottom:20px;color:gray;font-size:12px;">
+           &copy; 2015 SDE Solutions, Inc. All rights reserved.
+        </div>
+        </center>
+    </center>
+    <script type="text/javascript"> 
+        gitsense.howItWorks([ "on" ]);
+    </script>
+    </body>
+</html>

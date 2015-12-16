@@ -1,0 +1,111 @@
+h1,h2,h3,h4,h5,h6,h1.tagline_header { color:#333333; }
+
+h1 { font-size:34px; margin:0; margin-bottom:5px; font-weight:bold;}
+
+body {
+    background-color:white;margin:0;
+    font-family: "Open Sans", "Helvetica Neue",Helvetica,sans-serif;
+    font-weight:400; color: black;
+}
+
+th.index {
+    font-size: 22px;
+    border-bottom: 2px solid #666;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 5px;
+}
+
+td.index {
+    padding-top:5px;
+    font-size: 22px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+p { 
+    line-height: 1.4;
+    font-size: 20px;
+    text-align: left;
+}
+
+span.toggle {
+    padding:5px;
+    padding-left:25px;
+    padding-right:25px;
+    border-radius:5px; 
+    font-size:14px;
+    margin-right:3px;
+}
+
+span.toggle-active-on {
+    background-color:#55a532; 
+    color: white; 
+    border: 1px solid #55a532;
+}
+
+span.toggle-active-off {
+    background-color:#bd2c00; 
+    color: white; 
+    border: 1px solid #bd2c00;
+}
+
+span.toggle-inactive {
+    color: black; border: 1px solid #aaa; background-color: #fafafa;
+}
+
+span.toggle-inactive:hover {
+    background-color:#efefef; cursor: pointer; border: 1px solid #ddd;
+}
+
+div.footer {
+ padding-top:20px;padding-bottom:20px;border-top:1px solid #ccc;color:gray;font-size:12px;
+}
+
+.screen-shots {
+    border: 1px solid #ccc;
+    position: relative;
+}
+
+.shadow {
+    box-shadow: 2px 0px 15px 0px #e1e1e1;
+}
+
+.caption-container {
+    width:100%;
+    height:40px;
+    background-color:#555;
+    text-align:left;
+    font-size: 14px;
+    opacity:.9;
+    position:absolute;
+    top: 460px;
+    overflow:hidden
+}
+
+table.caption {
+    width: 100%;
+    height:100%;
+    font-size: 14px;
+    color: white;
+}
+
+td.caption-arrow {
+    vertical-align: middle;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+td.caption-text {
+    vertical-align: middle;
+    width: 100%;
+    font-size: 14px;
+}
+
+div.clear { 
+    clear:both;
+}
+
