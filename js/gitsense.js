@@ -40,7 +40,7 @@ var gitsense = {
             var prev = document.getElementById(prefix+"-caption-nav-prev"),
                 next = document.getElementById(prefix+"-caption-nav-next");
 
-            body.onclick = clickedNext;
+            //body.onclick = clickedNext;
             next.onclick = clickedNext;
             prev.onclick = clickedPrev;
             
