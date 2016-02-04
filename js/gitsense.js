@@ -14,8 +14,9 @@ var gitsense = {
             initState(states[i]);
 
         function initState(state) {
-            var kids   = document.getElementById(prefix+"-body-"+state).children,
-                imgs   = [],
+            var body = document.getElementById(prefix+"-body-"+state),
+                kids = body.children,
+                imgs = [],
                 kid,
                 i;
 
@@ -39,7 +40,11 @@ var gitsense = {
             var prev = document.getElementById(prefix+"-caption-nav-prev"),
                 next = document.getElementById(prefix+"-caption-nav-next");
 
-            next.onclick = function() {
+            body.onclick = clickedNext;
+            next.onclick = clickedNext;
+            prev.onclick = clickedPrev;
+            
+            function clickedNext() {
                 var idx    = stateToImageIdx[state],
                     images = stateToImages[state],
                     newIdx;
@@ -54,7 +59,7 @@ var gitsense = {
                 updateImage(state, images[idx], images[newIdx]);
             }
 
-            prev.onclick = function() {
+            function clickedPrev() {
                 var idx    = stateToImageIdx[state],
                     images = stateToImages[state],
                     newIdx;
