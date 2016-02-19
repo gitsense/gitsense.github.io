@@ -66,6 +66,10 @@ div.footer {
 .screen-shots {
     border: 1px solid #ccc;
     position: relative;
+    width: 940px;
+    height: 500px;
+    overflow: hidden;
+    margin-top: 10px;
 }
 
 .shadow {
@@ -81,7 +85,9 @@ div.footer {
     opacity:.9;
     position:absolute;
     top: 460px;
-    overflow:hidden
+    overflow:hidden;
+    z-index: 1000;
+    cursor: default;
 }
 
 table.caption {
@@ -107,5 +113,11 @@ td.caption-text {
 
 div.clear { 
     clear:both;
+}
+
+.dots {
+    margin-top: 20px;
+    width: 940px;
+    text-align: center;
 }
 

@@ -8,6 +8,7 @@ var gitsense = {
             stateToImageIdx = {},
             captionBody     = document.getElementById(prefix+"-caption"),
             captionText     = document.getElementById(prefix+"-caption-text"),
+            clickedCaption  = false,
             i;
 
         for ( i = 0; i < states.length; i++ )
@@ -15,6 +16,7 @@ var gitsense = {
 
         function initState(state) {
             var body = document.getElementById(prefix+"-body-"+state),
+                dots = document.getElementById("dots"),
                 kids = body.children,
                 imgs = [],
                 kid,
@@ -30,6 +32,8 @@ var gitsense = {
 
                 if ( i !== 0 )
                     kid.style.display = "none";
+
+                addDot(i, kid);
             }
 
             stateToImages[state]   = imgs;
@@ -40,19 +44,52 @@ var gitsense = {
             var prev = document.getElementById(prefix+"-caption-nav-prev"),
                 next = document.getElementById(prefix+"-caption-nav-next");
 
-            //body.onclick = clickedNext;
+            captionBody.onclick = function() { 
+                clickedCaption = true; 
+
+                setTimeout(function(){ clickedCaption = false; }, 200)
+            };
+
+            body.onclick = clickedNext;
             next.onclick = clickedNext;
             prev.onclick = clickedPrev;
+
+            function addDot(i, img) {
+                var dot = document.createElement("span");
+
+                dot.setAttribute("class", "octicon octicon octicon-primitive-dot");
+
+                dot.style.marginLeft = "10px";
+                dot.style.fontSize   = "20px";
+                dot.style.cursor     = "pointer";
+                dot.style.color      = i === 0 ? "#666" : "#ddd";
+
+                dots.appendChild(dot);
+
+                img.dot = dot;
+
+                dot.onclick = function() { clickedNext(i); }
+            }
             
-            function clickedNext() {
+            function clickedNext(clicked) {
+                if ( clickedCaption )
+                    return;
+
                 var idx    = stateToImageIdx[state],
                     images = stateToImages[state],
                     newIdx;
 
-                if ( idx + 1 === images.length )
-                    newIdx = 0;
-                else
-                    newIdx = idx + 1;
+                if ( typeof(clicked) === "number" ) {
+                    newIdx = clicked;
+                } else {
+                    if ( idx + 1 === images.length )
+                        newIdx = 0;
+                    else
+                        newIdx = idx + 1;
+                }
+
+                images[idx].dot.style.color    = "#ccc";
+                images[newIdx].dot.style.color = "#666";
 
                 stateToImageIdx[state] = newIdx;
 
@@ -68,6 +105,9 @@ var gitsense = {
                     newIdx = images.length - 1;
                 else
                     newIdx = idx - 1;
+
+                images[idx].dot.style.color    = "#ccc";
+                images[newIdx].dot.style.color = "#666";
 
                 stateToImageIdx[state] = newIdx;
 
