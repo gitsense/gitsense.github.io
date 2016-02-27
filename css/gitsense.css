@@ -121,3 +121,10 @@ div.clear {
     text-align: center;
 }
 
+.green-dot { color: #6db33f; font-size: 12px; }
+
+th { padding: 10px; border-bottom: 1px solid #ccc; }
+td { padding: 7px; border-bottom: 1px solid #ddd; }
+
+td.compare-check { text-align:center}
+
