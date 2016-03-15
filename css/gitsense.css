@@ -25,9 +25,17 @@ td.index {
 }
 
 p { 
-    line-height: 1.4;
-    font-size: 20px;
+    line-height: 1.6;
+    font-size: 16px;
     text-align: left;
+    color: #444;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+li {
+    line-height: 1.6;
+    font-size: 16px;
 }
 
 span.toggle {
@@ -127,4 +135,12 @@ th { padding: 10px; border-bottom: 1px solid #ccc; }
 td { padding: 7px; border-bottom: 1px solid #ddd; }
 
 td.compare-check { text-align:center}
+
+.blog-title-container { margin-top:20px; margin-bottom:10px; border-bottom: 1px solid #888; }
+.blog-title { color:black; font-size: 20px; font-weight: normal; }
+.blog-post-summaries { margin-top: 30px; width: 670px; }
+.blog-post-title { font-size: 25px; font-weight: normal; }
+.blog-post-metadata { color: #888; border-bottom: 1px solid #aaa; padding-bottom: 10px; }
+img.box { border: 1px solid #ccc; }
+
 
