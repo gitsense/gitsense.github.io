@@ -8,6 +8,10 @@ body {
     font-weight:400; color: black;
 }
 
+table {
+    white-space:nowrap;
+}
+
 th.index {
     font-size: 22px;
     border-bottom: 2px solid #666;
