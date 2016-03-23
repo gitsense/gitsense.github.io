@@ -36,7 +36,7 @@
 <!-- START OF BLOG -->
                         <h2 style="margin-bottom:5px;">
                             <a href=/blog/client-side-routing.html class=blog-post-title>
-                                How GitSense Uses Client-Side Routing to Route Bitbucket, GitHub and GitHub Enterprise Searches
+                                Using Client-Side Routing to Route Bitbucket, GitHub and GitHub Enterprise Searches
                             </a>
                         </h3>
                         <div class=blog-post-metadata> 
@@ -46,16 +46,24 @@
 If you have never heard of GitSense before, GitSense brings advanced search and code management metrics to <a href=https://bitbucket.org>Bitbucket</a>, <a href=https://github.com>GitHub</a> and <a href=https://github.com/business>GitHub Enterprise</a>.  And in this blog post, we'll talk about client-side routing and how it's used by GitSense, to support its divide and conquer approach to indexing and searching.
 </p>
 <p>
-Indexing and searching at GitHub and Bitbucket's scale is extremely challenging.  Creating and maintaining real-time search indexes, for millions of repositories, requires significant processing power and lots of fast storage; both of which, are not in abundance, for a startup like ours.  Luckily for us, improving search breadth, i.e. searching across millions of repositories, is not our goal; improving search depth is.
+Indexing and searching at GitHub and Bitbucket's scale is extremely challenging.  Creating and maintaining real-time search indexes, for millions of repositories, <a href=http://exploringelasticsearch.com/github_interview.html>requires significant processing power and lots of fast storage</a>; both of which, are not in abundance, for a bootstrapped startup like ours.  Luckily for us, improving search breadth (searching across millions of repositories) is not something we are interested in; improving search depth (drilling into repositories) is.
 </p>
 <p>
-In order for GitHub to support searches across millions of repositories, they have to take a shallow approach to indexing.  This is why you can't search for commits and diffs and why you can't search forked repositories and <a href=/github+gitsense.html>so forth</a>.  By focusing on search breadth, GitHub leaves a pretty big hole with regards to search depth, and that's the hole, that GitSense is designed to fill.
+In order for GitHub to support searches across millions of repositories, they have to take a shallow approach to indexing.  This is why you can't search for commits or diffs and why you can't search forked repositories and <a href=/github+gitsense.html>so forth</a>.  By focusing on search breadth, GitHub leaves a pretty big hole with regards to repository insight, and that's the hole we are interested in filling.
 </p>
 <p>
-If you've read our first blog post on <a href=/blog/benchmarking-march-14-2016.html>benchmarking low cost platforms</a>, you would know our indexers are designed to be installed, pretty much anywhere.  And it was our first post for a reason.  We wanted to highlight, early on, how GitSense could be used to divide and conquer, indexing and searching at a massive scale.  And in this blog post, we'll go over how our <a href=https://chrome.google.com/webstore/detail/gitsense/fgnjcebdincofoebkahonlphjoiinglo>Chrome extension</a>, can support such a model.
+If you've read our first blog post on <a href=/blog/benchmarking-march-14-2016.html>benchmarking low cost platforms</a>, you would know our indexers are designed to be installed, pretty much anywhere.  And it was our first post for a reason.  We wanted to highlight, early on, how GitSense could be used to divide and conquer, indexing and searching, at a massive scale.  And in this blog post, we'll go over how our <a href=https://chrome.google.com/webstore/detail/gitsense/fgnjcebdincofoebkahonlphjoiinglo>Chrome extension</a> is able to support such a model.
 </p>
 <p>
-If you haven't installed our GitSense Chrome extension yet, you can do so through the <a href=https://chrome.google.com/webstore/detail/gitsense/fgnjcebdincofoebkahonlphjoiinglo>Chrome Webstore</a> or manually, by downloading the source from <a href=https://github.com/gitsense/gitsense-extensions>GitHub</a> or <a href=https://bitbucket.org/gitsense/gitsense-extensions/overview>Bitbucket</a>.  Once it has been installed, open the GitSense options page, by entering <code>chrome://extensions</code> in your browser's location bar.
+If you haven't installed our Chrome extension you can do so through the <a href=https://chrome.google.com/webstore/detail/gitsense/fgnjcebdincofoebkahonlphjoiinglo>Chrome Webstore</a> or manually, by downloading the source from <a href=https://github.com/gitsense/gitsense-extensions>GitHub</a> or <a href=https://bitbucket.org/gitsense/gitsense-extensions/overview>Bitbucket</a>.  
+</p>
+
+<p>
+If have already installed GitSense, make sure to upgrade it to the latest version (0.3), which contains client-side routing support. You may also have to re-enable the GitSense extension, since changes were made to how permissions are requested.
+</p>
+
+<p>
+With GitSense installed, goto the GitSense options page, by entering <code>chrome://extensions</code> in your browser's location bar.
 </p>
 <p>
 <img src=/images/blog-client-side/chrome-extension-url.PNG class="box shadow" style="margin-top:5px;margin-bottom:5px;">
@@ -76,12 +84,12 @@ With the options page loaded, you'll find it comes with two default routing rule
 The first rule matches all Bitbucket URLs.  The second rule matches all GitHub URLs.  And if you expand the settings for each rule, you'll find they both reference the GitSense server at https://api.gitsense.com and GitHub/Bitbucket's respective API servers.
 </p>
 <p>
-To view the JSON for the default routing rules, refer to <a href=https://github.com/gitsense/gitsense-extensions/blob/master/chrome/js/config.js style="font-family:monospace">chrome/js/config.js</a> and to see how they are matched, refer to the <a href=https://github.com/gitsense/gitsense-extensions/blob/master/chrome/js/utils/config.js#L4 style="font-family:monospace">getRule</a> function that is defined in <a href=https://github.com/gitsense/gitsense-extensions/blob/master/chrome/js/utils/config.js style="font-family:monospace">chrome/js/utils/config.js</a>.  
+To view the JSON for these two routing rules, refer to <a href=https://github.com/gitsense/gitsense-extensions/blob/master/chrome/js/config.js style="font-family:monospace">chrome/js/config.js</a> and to see how they are matched, refer to the <a href=https://github.com/gitsense/gitsense-extensions/blob/master/chrome/js/utils/config.js#L4 style="font-family:monospace">getRule</a> function that is defined in <a href=https://github.com/gitsense/gitsense-extensions/blob/master/chrome/js/utils/config.js style="font-family:monospace">chrome/js/utils/config.js</a>.  
 </p>
 <p>
-As a side note, https://api.gitsense.com is our public GitSense server and at the present moment, we are indexing about 5,000 Git repositories.  And because there are millions of repositories hosted on both GitHub and Bitbucket, we are mostly likely not indexing a repository that belongs to you and/or one that you are interested in.
+As a side note, https://api.gitsense.com is our public GitSense server and at the present moment, we are indexing about 5,000 Git repositories.  And since there are millions of repositories hosted on both GitHub and Bitbucket, we are mostly likely not indexing a repository that belongs to you and/or one that you are interested in.
 </p>
-<p>We are also not planning on indexing as many repos as we can, as that's not our objective.  Our objective is to empower the end user, by making it, insanely easy for Bitbucket, GitHub, and GitHub Enterprise users to install our technology, and have them index/search whatever repos they want.
+<p>We are also not planning on indexing as many repos as we can, as that's not our objective.  Our objective is to empower the end user, by making it, insanely easy for Bitbucket, GitHub, and GitHub Enterprise users to install our technology, so they can index/search whatever repos they want.
 </p>
 <p>
 Now back to the topic at hand.  As explained earlier, <a href=https://help.github.com/articles/searching-code/>forked repositories</a> are not searchable in GitHub.  If you goto <a href=https://github.com/gitsense/atom/search?type=Code>https://github.com/gitsense/atom/search?type=Code</a>, you'll find a repo that we forked from <a href=https://github.com/atom/atom>atom/atom</a> and in this page, you'll find the following message:
@@ -120,10 +128,10 @@ With the new routing rule in place, we can goto <a href=https://github.com/gitse
 <a href=/images/blog-client-side/network.png><img src=/images/blog-client-side/network.png class="box shadow" style="margin-top:5px;margin-bottom:5px;"></a>
 </p>
 <p>
-So just like that, <a href=/github+gitsense.html>GitHub+Gitsense</a> turned a non-searchable GitHub repository, into a searchable one. And most importantly, it did so all from within GitHub.
+So just like that, <a href=/github+gitsense.html>GitHub+Gitsense</a> turned a non-searchable GitHub repository, into a searchable one. 
 </p>
 <p>
-Well we hope this post was informative and if you want to learn more about our <a href=https://chrome.google.com/webstore/detail/gitsense/fgnjcebdincofoebkahonlphjoiinglo>Chrome extension</a>, you can find our open source code at <a href=/https://github.com/gitsense/gitsense-extensions>GitHub</a> and <a href=/https://bitbucket.org/gitsense/gitsense-extensions>Bitbucket</a>. &nbsp;And if you are looking to improve your Bitbucket, GitHub and GitHub Enterprise browsing/search experience, make sure to send an email to <a href=mailto:privatebeta@gitsense.com>privatebeta@gitsense.com</a>, to register for the free GitSense Beta trial, that will be starting soon.
+Well we hope this post was informative and if you want to learn more about our <a href=https://chrome.google.com/webstore/detail/gitsense/fgnjcebdincofoebkahonlphjoiinglo>Chrome extension</a>, you can find the source at <a href=https://github.com/gitsense/gitsense-extensions>GitHub</a> and <a href=https://bitbucket.org/gitsense/gitsense-extensions>Bitbucket</a>. &nbsp;And if you are looking to improve your Bitbucket, GitHub or GitHub Enterprise browsing/search experience, make sure to send an email to <a href=mailto:privatebeta@gitsense.com>privatebeta@gitsense.com</a>, to register for the free GitSense Beta trial, that will be starting soon.
 </p>
 <!-- END OF BLOG -->
                     </div>
@@ -135,8 +143,5 @@ Well we hope this post was informative and if you want to learn more about our <
         </div>
         </center>
     </center>
-    <script type="text/javascript"> 
-        gitsense.howItWorks([ "on" ]);
-    </script>
     </body>
 </html>
