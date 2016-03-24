@@ -35,6 +35,43 @@
                     <div class=blog-post-summaries>
 <!-- START OF BLOG -->
                         <h2 style="margin-bottom:5px;">
+                            <a href=/blog/find-deleted-files.html class=blog-post-title>
+                                Finding Deleted Files in Bitbucket, GitHub And GitHub Enterprise with Visual Aid
+                            </a>
+                        </h3>
+                        <div class=blog-post-metadata> 
+                            By Terrence Chen on March 23, 2016 
+                        </div>
+<p>
+Finding deleted files with git can be easy.  If you remember the path to the deleted file, you can execute:
+</p>
+<pre>
+git log --all -- &lt;path-to-deleted-file&gt;
+</pre>
+
+<p>
+If you only remember the file name, you can execute:
+</p>
+<pre>
+git log --all -- **/&lt;filename&gt;
+</pre>
+<p>
+If the above scenarios do not apply, you can always try sifting through the deleted files.
+</p>
+<pre>
+git log --diff-filter=D --summary
+</pre>
+<p>
+However, if you still need a little more help, you might want to try our Changes Tree, which contains every change, from every commit in tree form.  To access the tree, goto <a href=https://bitbucket.org>Bitbucket</a>, <a href=https://github.com>GitHub</a>, or <a href=https://github/business>GitHub Enterprise's</a> commits page and select Changes. And from there, you can follow the grey folders and files to see who deleted what and when.
+<p>
+<a href=/images/changes-tree.gif><img src=/images/changes-tree.gif class="box shadow" style="margin-top:5px;margin-bottom:5px;"></a>
+</p>
+<p>
+We hope you found the Changes Tree as cool as we do and for other examples on how we are reimagining <a href=https://bitbucket.org>Bitbucket</a>, <a href=https://github.com>GitHub</a> and <a href=https://github.com/business>GitHub Enterprise</a> browsing, make sure to checkout <a href=/github+gitsense.html>GitHub+GitSense</a> and <a href=http://gitsense.bitbucket.org/bitbucket+gitsense.html>Bitbucket+GitSense</a> to learn more.
+<!-- END OF BLOG -->
+<div style="width:100%;margin-top:50px;margin-bottom:50px;border-bottom:2px solid #666;"></div>
+<!-- START OF BLOG -->
+                        <h2 style="margin-bottom:5px;">
                             <a href=/blog/client-side-routing.html class=blog-post-title>
                                 Using Client-Side Routing to Route Bitbucket, GitHub and GitHub Enterprise Searches
                             </a>
