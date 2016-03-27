@@ -1,0 +1,198 @@
+<html>
+    <head>
+        <title>GitSense - Blog</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link href="/css/gitsense.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/octicons/octicons.css">
+        <script type="text/javascript" src="/js/jquery-1.7.2/jquery.js"></script>
+    </head>
+    <body>
+    <center>
+        <div style="border-bottom:1px solid #ccc">
+            <div style="width:980px;padding-top:15px;text-align:left;height:50px;">
+                <div style="float:left">
+                    <a href=/><img src=/images/beta-logo.png></a>
+                </div>
+                <div style="float:right;padding-top:10px;font-size:16px;">
+                    <ul class="nav nav-pills">
+                        <li><a href=/github+gitsense.html style="">GitHub+GitSense</a></li>
+                        <li class="active"><a href=/blog style="">Blog</a></li>
+                        <li><a href=http://gitsense.bitbucket.org style="">Bitbucket</a></li>
+                    </ul>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        <div style="border-bottom:1px solid #ccc;padding-bottom:40px;">
+            <div style="width:980px;">
+                <div style="text-align:left">
+                    <div class=blog-title-container style="display:none;">
+                        <h1>
+                            <a href="/blog" class="blog-title">The GitSense Blog</a>
+                        </h1>  
+                    </div>
+                    <div class=blog-post-summaries>
+<!-- START OF BLOG -->
+                        <h2 style="margin-bottom:5px;">
+                            <a href=/blog/realtime-process-monitoring.html class=blog-post-title>
+                                Monitoring Multiple Java Virtual Machines and Critical System Information in Real-time
+                            </a>
+                        </h3>
+                        <div class=blog-post-metadata> 
+                            By Terrence Chen on March 28, 2016 
+                        </div>
+<p>
+If you've read our <a href=/blog/client-side-routing.html>client-side routing</a> blog, you would know we are focused on making searches within a Git repository better; for both code and code management metrics. To do this, we need to index as much as we can; this means every line change, from every commit, on every branch.
+
+<p>
+If you have never tried to index at this level before, it may not seem obvious, but it can be very time consuming and resource intensive.  
+To put things into perspective, consider the following sagemath repository:
+</p>
+<p>
+<a href=http://git.sagemath.org/sage.git/>http://git.sagemath.org/sage.git/</a>
+</p>
+<p>
+which has over 6000 branches.  This repository may not be the norm, but it's certaintly not the exception, when in comes to Enterprise. And if you've read our <a href=/blog/client-side-routing.html>client-side routing</a> blog, you would know GitHub only indexes one tree, per repository.  So not taking into consideration, <a href=/blog/benchmarking-march-14-2016.html#indexing-levels>all the other indexing</a> GitSense has to do; indexing the sagemath repository, would be equivalent to GitHub indexing 6,000 repositories. 
+</p>
+<p style="margin-bottom:30px;">
+So as you can see, creating a better way to search and browse <a href=http://gitsense.bitbucket.org/bitbucket+gitsense.html>Bitbucket</a> and <a href=http://gitsense.github.io/github+gitsense.html>GitHub</a>, is not without its challenges. And in this blog post, we'll talk about our realtime-process monitoring system and how we use it to make indexing at this level more manageable.
+</p>
+<center><b>Tracking Indexing Across Eight Different Repositories</b></center>
+<video width="670" height="377" controls style="border:1px solid #aaa;margin-top:10px;" class="box shadow">
+    <source src="/blog/media/groups.mp4" type="video/mp4">
+    <img src=/images/realtime-blog/master.gif
+        style="margin-top:10px;margin-bottom:0px;">
+</video>
+<p>
+In the above video, you'll find a recording of our process monitoring tool, as it tracks indexing across 8 different repositories, from <a href=/blog/benchmarking-march-14-2016.html#indexing-levels>level 1 to 4</a>.  In total, 971 branches were made commits/code searchable and at the peak of indexing, it was tracking the memory usage and garbage collection frequency from 17 JVMs in real-time.
+</p>
+<p style="margin-bottom:30px;">
+If you would like to view the same recording in full HD and at a slower speed, you can find it on <a href=https://www.youtube.com/watch?v=vJFCWCX1jDo>YouTube</a> as well. However, before you head over to <a href=https://www.youtube.com/watch?v=vJFCWCX1jDo>YouTube</a>, we recommend you learn a little more about the points of interests in our monitoring tool.
+</p>
+<center><b>Points of Interest - Process Monitor with No Indexing Activity</b></center>
+<a href=/images/realtime-blog/master-group-poi-1.png><img src=/images/realtime-blog/master-group-poi-1.png
+    class="box shadow" 
+    style="margin-top:10px;margin-bottom:10px;">
+<div class=blog-post-summaries style="margin-top:10px;"></a>
+<p style="margin-top:0px;">
+<b>Points of Interests</b>
+<ol style="margin-bottom:20px;">
+    <li>
+The uptime for the group's<sup>*</sup> process monitoring script. If you see an uptime with a strike through it, like so <strike>00:10:25</strike>, it means the script has stopped running.<br>
+<table style="margin-top:15px;margin-bottom:20px;line-height:1.6;background-color:#fafafa;padding:5px;border:1px solid #aaa;"><tr>
+<td style="border-bottom:0px;vertical-align:top;white-space:normal;padding-right:0;">*</td>
+<td style="border-bottom:0px;white-space:normal;vertical-align:top;">
+In GitSense, you don't index repositories per se, but rather, you index the group that the repository belongs to. We call these groups <b>Logical Indexing Groups</b> and they are designed to improve indexing efficiency and search performance.  Since it's a bit involved to explain, we'll leave it for another blog post.
+</td>
+</tr>
+</table>
+    </li>
+    <li>
+<p>
+System information, with the load average being the most important.  With it, we can tell if we are pushing a system a little too hard or not enough.
+    </li>
+    <li>
+<p>
+The amount of group <a href=https://en.wikipedia.org/wiki/RAM_drive>RAM disk</a> space used.  Every group has their own RAM disk space and it's used to store short lived files, that requires very fast I/O, like process heartbeats and garbage collection logs.
+</p>
+    </li>
+    <li>
+<p>
+Current system memory SWAP usage.  Ideally you would like to see this as close to zero as possible.  If GitSense is installed on machines with 2GB or less RAM, you'll want to keep an eye on SWAP usage.
+</p>
+    </li>
+    <li>
+<p>
+Uptime for the Workers JVM. If it wasn't alive for very long and was not restarted on purpose, it's a tell-tale sign, that something went wrong.  Checking the process log file will tell you more.
+</p>
+    </li>
+    <li>
+<p>
+The number of times the JVM has had to do major garbage collecting.  A double digit number is never a good sign.
+</p>
+    </li>
+    <li>
+<p>
+The percentage of time, the JVM has spent garbage collecting within the last ten minutes.  By default, the Workers process is configured to shut itself down, if it spends more than 30% of its time garbage collecting.
+</p>
+    </li>
+    <li>
+<p>
+The number of "Index Manager" threads minus one, is the number of indexing jobs that can be run in parallel.  In this case, you can run 5 indexing jobs in parallel, since there are 6 Index Manager threads.
+<p>Machines with 1GB of RAM or less, should <b>NEVER</b> index more than one group at a time. Unless the repos are quite small, you'll find the system will spend more time swapping, than indexing.
+</p>
+
+    </li>
+</ol>
+</div>
+<center><b>Points of Interest - Process Monitor with Indexing Activity</b></center>
+<a href=/images/realtime-blog/master-group-poi-2.png><img src=/images/realtime-blog/master-group-poi-2.png
+    class="box shadow" 
+    style="margin-top:10px;margin-bottom:10px;"></a>
+<p>
+<b>Points of Interest</b>
+<ol style="margin-bottom:20px;">
+    <li>
+    <p>
+        The number beside a thread, indicates the number of requests it is currently processing and/or the number of requests that has failed. You can click on the thread, to view the assigned/failed requests.
+    </p>
+    </li>
+    <li>
+        <p>
+        Click the desktop icon or group number, to view the process monitoring page for that group. 
+        </p>
+    </li>
+    <li>
+        <p>
+        Click the ticket icon or request number, to view the request log.
+        </p>
+    </li>
+    <li>
+        <p>
+        The amount of memory that is currently being used by the JVM.
+        </p>
+    </li>
+    <li>
+        <p>
+        The percentage of time the JVM has spend garbage collecting in the last ten minutes.
+        </p>
+    </li>
+    <li>
+        <p>
+        How long the index request, has had to wait in the indexing queue.  In this case, index request #10 had to wait one second.
+        </p>
+    </li>
+    <li>
+        <p>
+        How long the index request has been assigned for. In this case, 34 seconds.
+        </p>
+    </li>
+</ol>
+<h3 style="margin-bottom:5px;">Drilling into a Group</h4>
+<p style="margin-bottom:30px;margin-top:0px;">
+What we have shown so far, is how we monitor things from a bird's eye point of view. However, when something goes wrong, we'll often need to take a closer look. To do this, we can drill into a group, by clicking on the group's icon (shown in the video below) and it will bring us to the group's process monitoring page.  
+</p>
+<center><b>Tracking Indexing at the Group Level</b></center>
+<video width="670" height="377" controls style="border:1px solid #aaa;margin-top:10px;" class="box shadow">
+    <source src="/blog/media/group.mp4" type="video/mp4">
+    <img src=/images/realtime-blog/group.gif
+        style="margin-top:10px;margin-bottom:0px;">
+</video>
+<p>
+If you would like to view the above video in full HD and at a slower speed, you can find it on <a href=https://www.youtube.com/watch?v=dyLD1VoXDIA>YouTube</a> as well. 
+<p>
+Since we are going to talk about group process monitoring in greater detail, in our next blog about performance tuning, we'll stop here. We hope you found this blog informative and if are looking for a way to improve your GitHub and Bitbucket browsing experience, make sure to checkout <a href=http://gitsense.github.io/github+gitsense.html>GitHub+GitSense</a> and <a href=http://gitsense.bitbucket.org/bitbucket+gitsense.html>Bitbucket+GitSense</a>, to see how we are reimagining Bitbucket and GitHub browsing.
+
+<!-- END OF BLOG -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-top:20px;padding-bottom:20px;color:gray;font-size:12px;">
+           &copy; 2016 SDE Solutions, Inc. All rights reserved.
+        </div>
+        </center>
+    </center>
+    </body>/
+</html>
