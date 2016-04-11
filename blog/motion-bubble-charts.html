@@ -264,7 +264,7 @@ Developers work at the file level and knowing there is a lot of change in the Ru
 </table>
 <img src=/blog/motion-bubble-charts/motion-bubble-chart-root-paths-1.gif class="box shadow">
 <p>
-To help answer the question of what has changed, we've created a chart the groups the last seven days of code churn by top level files and directories.  And like in the high level charts, we've filtered out code churn that were the result of adding or deleting files.
+To help answer the question of what has changed, we've created a chart that groups the last seven days of code churn by top level files and directories.  And like in the high level charts, we've filtered out code churn that were the result of adding or deleting files.
 <p>
 In this chart, we can see the <code>app</code> directory, contains the most churn. We can also see the branch for the 8.6 release, which came out a few weeks ago, is still being worked on.  And the release branch for 8.7, which is going to be released on the 22nd of April, 2016, has the the most churn.
 <p>
@@ -311,6 +311,16 @@ And as the above chart shows, most of the code churn in the <code>app</code> dir
 <p>
 To see if <code>app/models/repository.rb</code> is a heavily modified file or if the frequent changes in the last 7 days were an anomaly, we'll look at its last 60 days of daily churn. 
 
+<img src=/blog/motion-bubble-charts/motion-bubble-chart-repository-1.gif class="box shadow" style="margin-top:20px;">
+<p>
+In this 60 days of daily code churn chart, we can see that it is an actively modified file. We can also see that, as we got closer to present date, the amount of churn decreased significantly, which would suggest this file is in maintenance mode. 
+
+<p>If we look at the last 7 days of churn, we can see the last two changes were pretty small, which would suggest future changes, would most likely be small as well.
+
+<img src=/blog/motion-bubble-charts/motion-bubble-chart-repository-2.gif class="box shadow" style="margin-top:20px;">
+
+<p>
+Well we hope you found this blog post interesting. This post was also a learning experience for us, as we are just scratching the surface of what we can do with our code churn metrics, so stay tuned for more posts like this in the future.
 
 <!-- END OF BLOG -->
                     </div>
