@@ -1,0 +1,140 @@
+<html>
+    <head>
+        <title>GitSense - Blog</title>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+        <link href="/css/gitsense.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="/octicons/octicons.css">
+        <script type="text/javascript" src="/js/jquery-1.7.2/jquery.js"></script>
+    </head>
+    <body>
+    <center>
+        <div style="border-bottom:1px solid #ccc">
+            <div style="width:980px;padding-top:15px;text-align:left;height:50px;">
+                <div style="float:left">
+                    <a href=/><img src=/images/beta-logo.png></a>
+                </div>
+                <div style="float:right;padding-top:10px;font-size:16px;">
+                    <ul class="nav nav-pills">
+                        <li><a href=/github+gitsense.html style="">GitHub+GitSense</a></li>
+                        <li class="active"><a href=/blog style="">Blog</a></li>
+                        <li><a href=http://gitsense.bitbucket.org style="">Bitbucket</a></li>
+                    </ul>
+                </div>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        <div style="border-bottom:1px solid #ccc;padding-bottom:40px;">
+            <div style="width:980px;">
+                <div style="text-align:left">
+                    <div class=blog-title-container style="display:none;">
+                        <h1>
+                            <a href="/blog" class="blog-title">The GitSense Blog</a>
+                        </h1>  
+                    </div>
+                    <div class=blog-post-summaries>
+<!-- START OF BLOG -->
+                        <h2 style="margin-bottom:5px;">
+                            <a href=/blog/realtime-process-monitoring.html class=blog-post-title>
+                                Tracking Code Changes with Motion Bubble Charts and GitSense Timeline Metrics
+                            </a>
+                        </h3>
+                        <div class=blog-post-metadata> 
+                            By Terrence Chen on April 7, 2016 
+                        </div>
+<p style="margin-top:10px;">
+If you know <a href=/>D3</a> or have ever looked into it, you'll probably recognize the animated bubble chart below. It's from <a href=https://bost.ocks.org/mike/nations>https://bost.ocks.org/mike/nations</a>, which is a recreation of Hans Rosling's <a href=/>2006 TED talk</a> chart.
+
+<p>
+If you are not familar with <a href=/>bubble charts</a>, they are a type of chart that displays three dimensions of data. In the chart below, you have life expectancy (vertical axis), income (horizontal axis), and population (circle size).  And as you can probably guess, a motion bubble chart, is one that is composed of multiple bubble charts.
+You can also add additional dimensions to a bubble chart, by varying circle colors, line thickness, and so on.  
+<p>
+<div style="font-weight:bold;margin-top:20px;text-align:center;mar">Wealth & Health of Nations</div>
+<img src=/images/wealth.gif class="box shadow" style="margin-top:5px;margin-bottom:5px;">
+<p>
+The motion bubble chart that Hans Rosling has created, is often praised for bringing life to data and in this blog post, we'll see if we can't do the same for GitLab's <a href=/>Community Edition</a> and <a href=/>Enterprise Edition</a> Git repos.
+
+</p>
+<p>
+If you are wondering "Why GitLab?", the answer is simple.  They have a very aggressive release schedule. They release on the 22nd of every month, which means there's going to be lots of churn, which should make for good analzying. But before we can get into those pretty charts, we'll have to quickly explain what <b>GitSense Timeline Metrics</b> are.
+</p>
+<p>
+In our <a href=/>first blog post</a>, we talked about the different <a href=/>indexing levels</a> in GitSense and what each level meant.  If you were to index to level to 7 or 8, GitSense would produce what we call daily, weekly and monthly timelines.  These timelines, captures the exact state of a branch at specific points in time. By default, GitSense produces 62 daily, 53 weekly, and 60 monthly timelines, which can be used to answer questions like: 
+</p>
+<div style='border:1px solid #bbb;background-color:#fafafa;padding:10px;border-radius:3px;margin-top:15px;'>
+On day 2016-03-29, what was the total number of lines of code, not including comment or blank lines, for files x, y and z on branches a, b, and c?
+</div>
+<p style="margin-top:10px;">
+and
+</p>
+<div style='border:1px solid #bbb;background-color:#fafafa;padding:10px;border-radius:3px;'>
+On week 20 in 2015, how many lines were added, changed and deleted for files x, y and z, that does not involve comment or blank lines, on branches a, b, and c?
+</div>
+<p>
+and so forth.  
+</p>
+<div class="alert alert-info" style="line-height:1.6;margin-top:15px;">
+<strong>Commits and Code Timelines</strong><br>
+There are two types of timeline metrics; one based on <b>commits</b> and another based on <b>code</b>. It's also important to note, code timeline metrics cannot be used to answer questions like who did what and when.  For example, if somebody changed the same line, but in ten different commits over the course of a week. The weekly code churn for that file would be one and not ten, since only one line was changed from the beginning of the week to the end.
+</div>
+
+<h4 style="margin-top:30px;">Download Data</h4>
+<p>If you are interested in viewing/exploring the numbers that are used to generate the charts in this blog post, you can find links to the <a href=https://en.wikipedia.org/wiki/Tab-separated_values>TSV files</a> in this section.
+</p>
+<h4 style="margin-top:30px;">High Level Charts</h4>
+<p>
+The
+</p>
+<table style="font-size:13px;margin-bottom:5px;">
+    <tr>
+        <td style="border-bottom:0px;padding-right:0px;">
+            <div style="width:10px;height:15px;background-color:#95cf94;"></div>
+        </td>
+        <td style="border-bottom:0px;">gitlab-ee (master)</td> 
+        <td style="border-bottom:0px;padding-right:0px;">
+            <div style="width:10px;height:15px;background-color:#ea9292;"></div>
+        </td>
+        <td style="border-bottom:0px">gitlab-ee (7-14-stable-ee)</td> 
+        <td style="border-bottom:0px;padding-right:0px;">
+            <div style="width:10px;height:15px;background-color:#8ebad8;"></div>
+        </td>
+        <td style="border-bottom:0px">gitlab-ee (master)</td> 
+        <td style="border-bottom:0px;padding-right:0px;">
+            <div style="width:10px;height:15px;background-color:#febe85;"></div>
+        </td>
+        <td style="border-bottom:0px">gitlab-ee (7-14-stable)</td> 
+    </tr>
+</table>
+<img src=/blog/motion-bubble-charts/motion-bubble-chart-lang-color-by-branch.gif class="box shadow">
+<p style="margin-top:20px;">
+I think it's fair to say, the above chart doesn't quite have the same impact as the Wealth & Health of Nations chart, but it does bring to attention some interesting facts, like:
+</p>
+<ol>
+    <li style="line-height:1.6">
+        In around August 2012, there was a little supernova. If you do an aggregate search in the monthly TSV files for either GitLab-CE master or GitLab-EE master, you'll find a bunch of files that has been classified as others, were removed.
+    </li>
+    <li style="line-height:1.6">
+        A bunch of HTML code was removed. A little digging in the TSV files shows it was bunch of documentation. It's probably safe to assume GitLab switched to dynamic document generation, hence the reason for deleting the documents.
+    </li>
+    <li style="line-height:1.6">GitLab's Enterprise edition contains more code than the community edition and is more actively worked on.</li>
+    <li style="line-height:1.6">
+        There is significant code churn (lines added, changed and deleted) that does not invole comment or blank lines, in the ruby code base.
+    </li> 
+</ol>
+<p style="margin-top:0px;">
+Since the cumulative code churn in GitLab's Ruby code is quite significant, we'll see if we can't get a bettter picture of what's going on by ignoring churn that added or deleted ruby files. 
+</p>
+<img src=/blog/motion-bubble-charts/motion-bubble-chart-ruby-chg-vs-churn.gif class="box shadow">
+
+<!-- END OF BLOG -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="padding-top:20px;padding-bottom:20px;color:gray;font-size:12px;">
+           &copy; 2016 SDE Solutions, Inc. All rights reserved.
+        </div>
+        </center>
+    </center>
+    </body>/
+</html>
