@@ -56,7 +56,7 @@ The motion bubble chart that Hans Rosling has created, is often praised for brin
 
 </p>
 <p>
-If you are wondering "Why GitLab?", the answer is simple.  They have a very aggressive release schedule. They release on the 22nd of every month, which should lead to a lot of churn, which should also make for good analzying. But before we can get start analyzing, we'll have to quickly explain what GitSense Timeline Metrics are.
+If you are wondering "Why GitLab?", the answer is simple.  They have a very aggressive release schedule. They release on the 22nd of every month, which probably means a lot of churn, which should make for good analzying. But before we can start, we'll have to quickly explain what GitSense Timeline Metrics are.
 </p>
 <a name=gtm></a>
 <h4 style="margin-top:20px;">GitSense Timeline Metrics</h4>
@@ -64,13 +64,13 @@ If you are wondering "Why GitLab?", the answer is simple.  They have a very aggr
 In our <a href=/blog/benchmarking-march-14-2016.html>first blog post</a>, we talked about the different <a href=/blog/benchmarking-march-14-2016.html#indexing-levels>indexing levels</a> in GitSense and what each level meant.  If you were to index to level to 7 or 8, GitSense would produce what we call daily, weekly and monthly timelines.  These timelines, captures the exact state of a branch at specific points in time. By default, GitSense produces 62 daily, 53 weekly, and 60 monthly timelines, which can be used to instaneously answer questions like: 
 </p>
 <div style='border:1px solid #bbb;background-color:#fafafa;padding:10px;border-radius:3px;margin-top:15px;'>
-On day 2016-03-29, what was the total number of lines of code, not including comment or blank lines, for files x, y and z on branches a, b, and c?
+On day 2016-03-29, what was the source lines of code, not including comment or blank lines, for files x, y and z on branches a, b, and c?
 </div>
 <p style="margin-top:10px;">
 and
 </p>
 <div style='border:1px solid #bbb;background-color:#fafafa;padding:10px;border-radius:3px;'>
-On week 20 in 2015, how many lines were added, changed and deleted for files x, y and z, that does not involve comment or blank lines, on branches a, b, and c?
+On week 20 in 2015, how many lines were added, changed and deleted, that does not include comment of blank lines, for files x, y and z on branches a, b, and c?
 </div>
 <p>
 and so forth.  
@@ -81,7 +81,7 @@ There are two types of timeline metrics; one based on <b>commits</b> and another
 </div>
 
 <h4 style="margin-top:30px;">GitSense Timeline Data</h4>
-<p>If you are interested in viewing the numbers that are used in this blog post, you can find links to the <a href=https://en.wikipedia.org/wiki/Tab-separated_values>TSV files</a> below.  However, beware, as some of the TSV files, contains over 200,000 rows.
+<p>If you are interested in viewing the numbers that are used in this blog post, you can find links to the <a href=https://en.wikipedia.org/wiki/Tab-separated_values>TSV files</a> below.  However, be warned, as some of the TSV files, contains over 200,000 rows.
 </p>
 
 <table style="margin-top:10px;">
@@ -287,7 +287,7 @@ With the changes made, we can see the cumulative code churn dropped by about 100
 
 <p>The vertical axis, which tracks changes made to the same line, is about 40,000.  For GitLab-EE, this means close to 180,000 lines of cumulative code churn were the result of adding new lines of code and/or deleting existing lines of code that were not not blank or comment lines.
 <p>
-The chart also shows the bubbles moving faster, as they got closer to present date, which means the rate of churn is increasing. This would make sense, considering GitLab's recent fund raising and hiring efforts. 
+The chart also shows the bubbles moving faster, as they got closer to present date, which would suggest the rate of churn is increasing. This would make sense, considering GitLab's recent fund raising and hiring efforts. 
 <p>
 To better visualize the rate of change, we'll redefine the Y axis to capture monthly code churn. By capturing monthly churn in the Y-axis, we'll be better able to see the ups and downs.
 
@@ -302,7 +302,7 @@ Given what we've seen so far, it doesn't look like GitLab's development is slowi
 What we've shown so far maybe interesting, but they don't provide any actionable data or insight, that could be used to improve a developers day to day routine. Like knowing how frequently somebody commits and at what time is interesting, they hardly provide any insight into what has changed.
 
 <p>
-Developers work at the file level and knowing there are a lot of changes, doesn't tell a lot.  To better illustrate how motions bubble charts can be used by developers, to aid in their day to day routines, we'll use them to answer "What has changed in GitLab-CE, in the last 7 days?"
+Developers work at the file level and knowing a lot of Ruby files has changed, doesn't tell a lot.  To demonstrate how motions bubble charts can be used by developers, we'll use them to answer "What has changed in GitLab-CE, in the last 7 days?"
 
 <table style="background-color:#fafafa;border:1px solid #ccc;font-size:13px;width:100%;line-height:1.3;margin-bottom:10px;margin-top:20px;">
     <tr>
@@ -343,7 +343,7 @@ To help us answer the question of, what has changed, we've created a motion bubb
 <p>
 With this chart, we can see the <code>app</code> directory, contains the most churn. We can also see the branch for the 8.6 release, which came out a few weeks ago, is still being worked on.  And the release branch for 8.7, which is going to be released on the 22nd of April, 2016, has the the most churn.
 <p>
-Since GitLab is predominately written in Ruby, we'll apply a Ruby filter to the above chart, to reduce the code churn noise, from the other files.
+Since GitLab is predominately written in Ruby, we'll apply a Ruby filter to the above chart, to reduce the code churn noise, from the other programming languages.
 
 <img src=/blog/motion-bubble-charts/motion-bubble-chart-root-paths-ruby-1.gif class="box shadow" style="margin-top:20px;">
 <p>
@@ -359,12 +359,12 @@ If you do an aggregate search in the code churn TSV files for GitLab-CE master, 
  scss   | 942
 </pre>
 <p>
-which shows there was a lot of churn in non Ruby files in that directory as well, which explains the sudden drop.
+which shows the Ruby code, had the least amount of churn, compared to the non-Ruby files in that directory.
 <p>
 Something else that is interesting about the <code>app</code> directory, is the churn to circle size ratio. We can see the <code>app</code> circle size, which represents the number of changed files, is about the same size as the <code>spec</code> directory; but the cumulative churn for the <code>app</code> directory is 1/3 less, which means the file changes in the <code>app</code> directory were most likely small ones.
 
 <p>
-To see if this is the case, we'll drill into the <code>app</code> directory. We'll also redefine the X and Y axis and radius, to make tracking individual files easier.
+To see if this was the case, we'll drill into the <code>app</code> directory. We'll also redefine the X and Y axis and radius, to make tracking individual files easier.
 
 <table style="background-color:#fafafa;border:1px solid #ccc;font-size:13px;width:100%;line-height:1.3;margin-bottom:20px;margin-top:20px;">
     <tr>
@@ -382,7 +382,7 @@ To see if this is the case, we'll drill into the <code>app</code> directory. We'
 </table>
 <img src=/blog/motion-bubble-charts/motion-bubble-chart-app-1.gif class="box shadow">
 <p>
-And as the above chart shows, most of the code churn in the <code>app</code> directory were small ones, with most being 10 or less. We can also tell by the circle size for <code>app/models/repository.rb</code>, that it was the most changed Ruby file in the <code>app</code> directory.
+And as the above chart shows, most of the code churn in the <code>app</code> directory were small ones, with most being 10 or less. We can also tell by the circle size for <code>app/models/repository.rb</code>, that it was the most frequently changed Ruby file in the <code>app</code> directory.
 <p>
 To see if <code>app/models/repository.rb</code> is a heavily modified file or if the frequent changes in the last 7 days were an anomaly, we'll look at its last 60 days of daily churn. 
 
@@ -395,7 +395,7 @@ In this 60 days of daily code churn chart, we can see this file was modified qui
 <img src=/blog/motion-bubble-charts/motion-bubble-chart-repository-2.gif class="box shadow" style="margin-top:20px;margin-bottom:10px;">
 
 <p>
-Since this is an actively modified file, we'll see how active it is across the other main release branches in GitLab-CE and GitLab-EE.  
+Since this is an actively modified file, we'll create a new chart, to track its change history in other release branches and to see who touched it last.  
 
 <table style="font-size:13px;margin-top:10px;margin-bottom:0px;">
     <tr>
@@ -429,13 +429,13 @@ Since this is an actively modified file, we'll see how active it is across the o
 </table>
 <img src=/blog/motion-bubble-charts/motion-bubble-chart-repository-3.gif class="box shadow" style="margin-top:10px;">
 <p>
-And as this last 60 days of daily code churn shows, the <code>app/models/repository.rb</code> file is modified quite frequently across all branches, with the most churn in GitLab's Enterprise edition.
+And as this last 60 days of daily code churn shows, the <code>app/models/repository.rb</code> file is modified quite frequently across all active release branches, with the most churn in GitLab's Enterprise edition.
 
 <p>
-Well we hope you found this post, both interesting and informative.  And if you've never thought about using software metrics in your day to day routine, we hope you got some ideas on how you can. 
+Well we hope you found this post, both interesting and informative.  And if you've never thought about using software metrics in your day to day routine, we hope this showed you, how you can.
 
 <p>
-In the future, we'll cover other charting methods, like how you can use <a href=https://en.wikipedia.org/wiki/Heat_map>heat maps</a> + GitSense, to quickly identify hotspots in your codes history and so much more. We are just scratching the surface, with what we can do with our GitSense Timeline Metrics, so stay tuned to learn more.
+In the future, we'll cover other charting methods, like how you can use <a href=https://en.wikipedia.org/wiki/Heat_map>heat maps</a> plus GitSense, to quickly identify hotspots in your codes history, filter search results, and so much more. With our Timeline Metrics, we are just scratching the surface, as to what we can do with them, so stay tuned for future posts, to learn more.
 
 <!-- END OF BLOG -->
                     </div>
