@@ -36,7 +36,7 @@
 <!-- START OF BLOG -->
                         <h2 style="margin-bottom:5px;">
                             <a href=/blog/gitsense-contexts.html class=blog-post-title>
-                                GitSense Contexts: Snippets for Code Changes
+                                GitSense Contexts: Custom Windows into Git's History
                             </a>
                         </h3>
                         <div class=blog-post-metadata> 
@@ -44,23 +44,23 @@
                         </div>
 <p style="margin-top:10px;">
 Like snippets and gists, which provides an easy way to share segments of code; GitSense contexts, provides an easy way
-to share parts of Git's history.&nbsp; With GitSense contexts, you can easily control what parts of Git's history you would
-like the end user to see, analyze and search.
+to share selected parts of Git's history.&nbsp; With GitSense contexts, you'll be able to create windows into Git's history, that only shows what you want others to
+see.
 </p>
 <p>
 For example, if you wanted to show others, what is changing in your 2.0 release, you can create
 a GitSense context, that only includes relevant branches and file changes for that release. &nbsp;And
-by having others view Git's history through that context, you can ensure the changes that they
+by having others view Git's history through that context window, you can ensure the changes that they
 see, will always be relevant to the 2.0 release.
 <p>
 In a nutshell, GitSense contexts, makes it possible for you to put code changes into context for others. &nbsp;And in this
-blog post, we'll highlight some of the ways you can use GitSense contexts, to build software better, together.
+blog post, we'll highlight some of the ways we can use GitSense contexts, to build software better, together.
 </p>
-<h4 style="margin-top:20px">Support for Bitbucket, GitHub and GitLab</h4>
+<h4 style="margin-top:20px">Bitbucket, GitHub and GitLab Support</h4>
 <p>
-Need to put repos that are hosted on <a href=/>Bitbucket</a>, <a href=/>GitHub</a> and <a href=/>GitLab</a> into context?&nbsp; No problem.&nbsp;
+Need to put repos that are hosted on <a href=https://bitbucket.org>Bitbucket</a>, <a href=https://github.com>GitHub</a> and <a href=https://gitlab.com>GitLab</a> into context?&nbsp; No problem.&nbsp;
 You can easily combine repos from Bitbucket Cloud/Server, GitHub/GitHub Enterprise and GitLab Cloud/Server.&nbsp;
-And in the near future, you'll be able to include repos from <a href=/>Visual Studio Team Services</a> as well.
+And in the near future, you'll be able to include repos from <a href=https://www.visualstudio.com/products/visual-studio-team-services-vs>Visual Studio Team Services</a> as well.
 <p>
 <a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts#b=bitbucket:atlassian/aui:master::github:atom/atom:master::gitlab:gitlab-org/gitlab-ce:master 
     style="white-space:nowrap;font-size:14px;">https://gitsense.com/insight?c=bitbucket:gitsense/contexts#b=bitbucket:atlassian/aui:master::...</a>
@@ -68,21 +68,21 @@ And in the near future, you'll be able to include repos from <a href=/>Visual St
 <a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts#b=bitbucket:atlassian/aui:master::github:atom/atom:master::gitlab:gitlab-org/gitlab-ce:master>
 <img src=/images/multi-host.png class="box shadow" style="margin-top:20px;">
 </a>
-<h4 style="margin-top:30px">Context ideas</h4>
-<p>Here are some of the ways you can use GitSense contexts, to help you and others, to work smarter and faster:
+<h4 style="margin-top:30px">Context Use Cases</h4>
+<p>Here are some of the ways you can work smarter with GitSense contexts.
 <p>
 
 <ul>
 <li style="line-height:1.7">
-    Create an active releases context.&nbsp; With this context, you'll be able to quickly tell what's in a release and what's not.
+    Create contexts for active releases.&nbsp; With these contexts, you'll be able to quickly tell what's in a release and what's not.
     <br>
     <a href=/>https://gitsense.com/insight?b=gitlab:gitlab-org/gitlab-ce:maste</a><br>
     <a href=/>https://gitsense.com/insight?b=gitlab:gitlab-org/gitlab-ce:maste</a><br>
     <a href=/>https://gitsense.com/insight?b=gitlab:gitlab-org/gitlab-ce:maste</a><br>
 </li>
 <li style="line-height:1.7;margin-top:20px;">
-    See what your teammates are working on, with a teams context.&nbsp;
-    With this context, you won't have to sift through unnecessary noise, to see what others are working on.
+    Create a teams context, to see what your teammates are working on.&nbsp;
+    With this context, you won't have to sift through unnecessary noise from others.
     <br> 
     <a href=/>https://gitsense.com/insight?q=author:rsc@golang.org+author:rob@golang.org</a><br>
     <p>
@@ -90,7 +90,7 @@ And in the near future, you'll be able to include repos from <a href=/>Visual St
     <a href=/>https://gitsense.com/insight?q=author:rsc@golang.org+author:rob@golang.org</a>
 </li>
 <li style="line-height:1.7;margin-top:20px;">
-    Create an issues/tasks context.&nbsp; With this context, you'll be able to map issues/tasks to changes, which should come in handy for daily scrum meetings.
+    Create contexts to track issues/tasks.&nbsp; With these context, you'll be able to map issues/tasks to code changes, which should come in handy for daily scrum meetings.
     <br>
     <a href=/>https://gitsense.com/insight?q=author:rsc@golang.org+author:rob@golang.org</a>
 </li>
@@ -98,11 +98,20 @@ And in the near future, you'll be able to include repos from <a href=/>Visual St
 <p>
 </ul>
 <p>
-And for more examples and to learn to how create/share GitSense contexts, make sure to checkout the 
-<a href=/>Quick Introduction to GitSense Contexts Tutorial</a> context.
+For more examples and to learn to how create your own contexts, please refer to the
+<a href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts:gs_contexts::default.ccf 
+    target=_blank>Quick Introduction to GitSense Contexts Tutorial</a> context.
 
-<h4 style="margin-top:30px">Native Bitbucket Cloud Support</h4>
+<h4 style="margin-top:30px">Integrated Bitbucket, GitLab and Visual Studio Team Service Support</h4>
 <p>
-If you are a Bitbucket user, you'll soon be able to use GitSense from within Bitbucket.&nbsp; So stay tuned for updates, for when the GitSense addon for Bitbucket Cloud becomes available for general use.
+If you use Bitbucket, you'll soon be able to use GitSense from within Bitbucket, with the GitSense <a href=https://developer.atlassian.com/bitbucket/>Bitbucket Connect</a> addon.&nbsp; Stay tuned for updates, for when the addon becomes available.
 </p>
 <img src=/images/native-bitbucket.png class="box shadow" style="margin-top:20px;">
+<p style="margin-top:30px">
+Integrated support for GitLab and Visual Studio Team Service will be available in the near future.
+</p>
+<img src=/images/gitsense-gitlab.png class="box shadow" style="margin-top:20px;">
+<img src=/images/gitsense-vss.png class="box shadow" style="margin-top:30px;">
+<h4 style="margin-top:40px">GitSense Server and Cloud</h4>
+<p>General availabity for GitSense Server and GitSense cloud, is tentatively scheduled for the begining of July 2016.
+<p style="margin-top:10px">For sales enquires and other related queries, please contact <a href=mailto:sales@gitsense.com>sales@gitsense.com</a></p>
