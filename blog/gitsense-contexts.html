@@ -64,18 +64,16 @@ Click on the link below, to see how you can combine repos from different sources
 <a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts:gs_contexts::default.ccf#b=bitbucket:atlassian/aui:master::github:atom/atom:master::gitlab:gitlab-org/gitlab-ce:master 
     style="white-space:nowrap;font-size:14px;">https://gitsense.com/insight?c=bitbucket:gitsense/contexts:gs_contexts::default.ccf</a>
 
-<a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts#b=bitbucket:atlassian/aui:master::github:atom/atom:master::gitlab:gitlab-org/gitlab-ce:master>
 <img src=/images/multi-host.png class="box shadow" style="margin-top:20px;">
-</a>
 <h4 style="margin-top:40px">Use Cases for GitSense Contexts</h4>
-<p>Here are some interesting ways, that you can use GitSense contexts:
+<p>Here are some interesting ways, that you can use GitSense contexts, to control the flow of information:
 <p>
 
 <ul>
 <li style="line-height:1.7;margin-top:20px;">
     Create an issues/tasks context.&nbsp; With this context, you and others, will only see changes, that references certain issues and tasks.
     <p>
-    <a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts:gs_contexts::issues.ccf#b=bitbucket:atlassian/aui:5.10.x::bitbucket:atlassian/aui:5.9.x::bitbucket:atlassian/aui:master>View changes from 4 different Jira issues and tasks</a>.&nbsp;
+    <a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts:gs_contexts::issues.ccf#b=bitbucket:atlassian/aui:master>View changes from 4 different Jira issues and tasks</a>.&nbsp;
 
     <img src=/images/issues-1.png class="box shadow" style="margin-top:20px;">
     <p>
@@ -86,11 +84,12 @@ Click on the link below, to see how you can combine repos from different sources
 
     <p>    
     and GitSense will let you know, if the changes are on the other branches or not.
-
     <img src=/images/issues-2.png class="box shadow" style="margin-top:20px;">
 </li>
 <li style="line-height:1.7;margin-top:20px;">
-    Create an active releases context.&nbsp; With this context, you'll be able to quickly tell what's in a release and what's not.
+    Create an active releases context.&nbsp; With this context, you'll be able to quickly tell what's in a release and what's not.&nbsp;
+    And by restricting what branches the context user can see, you eliminate the need for them to have to sift through irrelevant/inactive
+    release branches.
     <p> 
     <a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts:gs_contexts::releases.ccf#b=github:atom/atom:master::github:atom/atom:1.9-releases::github:atom/atom:1.8-releases style="white-space:nowrap;">Atom Editor</a><br>
     <a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts:gs_contexts::releases.ccf#b=bitbucket:atlassian/aui:master::bitbucket:atlassian/aui:5.9.x::bitbucket:atlassian/aui:5.10.x style="white-space:nowrap;">Atlassian AUI</a><br>
@@ -102,7 +101,7 @@ Click on the link below, to see how you can combine repos from different sources
     Create a teams context.&nbsp;
     With this context, you won't have to sift through unnecessary noise to track changes from teammates.
     <p>
-    <a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts:gs_contexts::teams.ccf#b=github:golang/go:master>Track changes by Russ Cox and Rob Pike in the Go repo</a><br>
+    <a target=_blank href=https://gitsense.com/insight?c=bitbucket:gitsense/contexts:gs_contexts::teams.ccf#b=github:golang/go:master>See what Russ Cox and Rob Pike are up to</a><br>
     <p>
     And if you are only interested in seeing changes to certains files/directories, add some path and language filters.
     <p>
@@ -119,7 +118,7 @@ For more examples and to learn to how create your own contexts, please refer to 
 <h4 style="margin-top:30px">Deep Integration Support</h4>
 <p>
 With <a href=https://developer.atlassian.com/bitbucket>Bitbucket Connect</a>, Bitbucket users will soon (early July),
-be able to create GitSense contexts for their private repos.&nbsp; And if they want to, search for changes in 
+be able to create GitSense contexts for their private repos.&nbsp; And if they want to, they can also search for changes in 
 GitLab and GitHub repos, all from within Bitbucket.
 </p>
 <img src=/images/native-bitbucket.png class="box shadow" style="margin-top:20px;">
@@ -128,9 +127,10 @@ We are also planning on developing deep integration solutions for GitLab and Vis
 </p>
 <img src=/images/gitsense-gitlab.png class="box shadow" style="margin-top:20px;">
 <img src=/images/gitsense-vss.png class="box shadow" style="margin-top:30px;">
-<p style="margin-top:20px">And this brings us to the end of this blog.&nbsp;
-<p>So as we have shown, GitSense contexts, provides a whole new twist on how we can track and analyze code changes and hopefully it gave you some ideas on how you can use them, to work smarter and faster.
+
+<p style="margin-top:40px">
+And this brings us to the end of this blog.&nbsp; And as usual, we hope it was informative and gave you some ideas on how you can work smarter and faster, with GitSense contexts.
 <p>
-<h3>General Availability</h3>
+<h4 style="margin-top:30px">General Availability for GitSense Server and Cloud</h4>
 <p>
-We are shooting for early July 2016, for GitSense Server (install on your own infrastructure) and GitSense Cloud (managed by us), so stay tuned for more updates.
+We are shooting for early July 2016, for general availability for GitSense Server (install on your own infrastructure) and GitSense Cloud (managed by us), so stay tuned for further blog updates.
